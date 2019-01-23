@@ -25,7 +25,7 @@ class City extends Component {
 	weatherClasses = () => {
 		if (this.props.weather) {
 			const weather = this.props.weather.toLowerCase();
-			const isSunny = weather === 'sunny';
+			const isSunny = weather.indexOf('sunny') !== -1 || weather.indexOf('clear') !== -1;
 			const isCloudy = weather.indexOf('clouds') !== -1;
 			const isFoggy = weather === 'mist';
 			const isRainy = weather.indexOf('drizzle') !== -1;

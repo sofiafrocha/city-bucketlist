@@ -90,6 +90,10 @@ h1, h2, h3 {
 		margin-right: 0.25rem;
 	}
 
+	&__name {
+		text-transform: capitalize;
+	}
+
 	// For the check animation
 	&:before {
 		position: absolute;
