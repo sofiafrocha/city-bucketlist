@@ -13,22 +13,22 @@ class CityBucketlist extends Component {
 			{
 				id: uuidv4(),
 				name: 'London',
-				weather: 'rainy',
-				temperature: 7,
+				weather: null,
+				temperature: null,
 				night: false,
 			},
 			{
 				id: uuidv4(),
 				name: 'Lisbon',
-				weather: 'sunny',
-				temperature: 12,
+				weather: null,
+				temperature: null,
 				night: false,
 			},
 			{
 				id: uuidv4(),
 				name: 'Tokyo',
-				weather: 'cloud',
-				temperature: 20,
+				weather: null,
+				temperature: null,
 				night: true,
 			}
 		]
@@ -83,7 +83,9 @@ class CityBucketlist extends Component {
 	// * onMount
 	componentDidMount() {
 		this.state.cities.forEach((city) => {
-			this.getWeatherAndTemperature(city.name, city.id);
+			if (!city.temperature) {
+				this.getWeatherAndTemperature(city.name, city.id);
+			}
 		});
 	}
 

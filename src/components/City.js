@@ -24,8 +24,23 @@ class City extends Component {
 
 	weatherClasses = () => {
 		if (this.props.weather) {
-			return `c-City__weather icon ion-md-${this.props.weather}`;
+			const weather = this.props.weather.toLowerCase();
+			const isSunny = weather === 'sunny';
+			const isCloudy = weather.indexOf('clouds') !== -1;
+			const isFoggy = weather === 'mist';
+			const isRainy = weather.indexOf('drizzle') !== -1;
+
+			if (isCloudy) {
+				return `c-City__weather wi wi-cloudy`;
+			} else if (isFoggy) {
+				return `c-City__weather wi wi-fog`;
+			} else if (isRainy) {
+				return `c-City__weather wi wi-rain`;
+			} else if (isSunny) {
+				return `c-City__weather wi wi-day-sunny`;
+			}
 		}
+
 		return 'c-City__weather';
 	}
 
