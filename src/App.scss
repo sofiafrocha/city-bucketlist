@@ -1,4 +1,5 @@
 html {
+	padding: 2rem;
 	font-family: 'Maven Pro', sans-serif;
 	background-color: white;
 	color: #3d84a8;
@@ -17,11 +18,35 @@ h1, h2, h3 {
 	margin: 0 auto;
 }
 
-.c-Header {
-	text-align: center;
+.c-Helper {
+	text-align: right;
+	opacity: 0.5;
+	font-size: 0.75rem;
+}
+
+.c-AddCity {
+	margin: 0.8rem 0;
+
+	input {
+		width: 100%;
+		padding: 1.1rem;
+		font-size: 1.25rem;
+		border-radius: 10px;
+		border: 1px solid #46cdcf;
+		background-color: white;
+		color: #3d84a8;
+		font-weight: normal;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
+		transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+		&:focus {
+			box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+		}
+	}
 }
 
 .c-CityList {
+	margin: 1rem 0;
 	padding: 0;
 	list-style-type: none;
 	border-radius: 10px;
@@ -37,6 +62,16 @@ h1, h2, h3 {
 	font-size: 1rem;
 	background-color: #abedd8;
 	color: #48466d;
+	max-height: 80px;
+	overflow: hidden;
+
+	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+	&__name,
+	&__weather,
+	&__temperature {
+		z-index: 2;
+	}
 
 	&__weather,
 	&__temperature {
@@ -49,6 +84,20 @@ h1, h2, h3 {
 		margin-right: 0.25rem;
 	}
 
+	// For the check animation
+	&:before {
+		position: absolute;
+		content: '';
+		width: 0%;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		background-color: #46cdcf;
+
+		transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+	}
+
+	// For the "Check" that appears on hover
 	&:after {
 		position: absolute;
 		display: flex;
@@ -77,6 +126,16 @@ h1, h2, h3 {
 		.c-City__weather,
 		.c-City__temperature {
 			color: #abedd8;
+		}
+	}
+
+	&--done {
+		padding-top: 0;
+		padding-bottom: 0;
+		max-height: 0;
+
+		&:before {
+			width: 100%;
 		}
 	}
 }
