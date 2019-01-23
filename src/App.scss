@@ -1,3 +1,82 @@
 html {
-	background-color: hotpink;
+	font-family: 'Maven Pro', sans-serif;
+	background-color: white;
+	color: #3d84a8;
+	font-size: 18px;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+	margin: 0;
+}
+
+.l-container {
+	display: flex;
+	flex-direction: column;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.c-Header {
+	text-align: center;
+}
+
+.c-CityList {
+	padding: 0;
+	list-style-type: none;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 19px 38px rgba(0,0,0,0.15), 0 15px 12px rgba(0,0,0,0.10);
+}
+
+.c-City {
+	position: relative;
+	padding: 1.15rem;
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	background-color: #abedd8;
+	color: #48466d;
+
+	&__weather,
+	&__temperature {
+		opacity: 0.6;
+	}
+
+	&__weather {
+		font-size: 1.5rem;
+		margin-left: auto;
+		margin-right: 0.25rem;
+	}
+
+	&:after {
+		position: absolute;
+		display: flex;
+		content: 'Check?';
+		font-style: italic;
+		font-size: 0.75rem;
+		top: 50%;
+		left: 50%;
+		opacity: 0;
+		transform: translate(-50%, -0%);
+
+		transition: all 0.3s ease-in-out;
+	}
+
+	&:hover {
+		&:after {
+			opacity: 0.5;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	&--night {
+		background-color: #48466d;
+		color: #dddde1;
+
+		.c-City__weather,
+		.c-City__temperature {
+			color: #abedd8;
+		}
+	}
 }

@@ -6,9 +6,38 @@
 		<title>City Bucketlist</title>
 
 		<link rel="stylesheet" href="./src/App.scss">
+		<link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+
+		<link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
 	</head>
-	<body>
-		<h1>Hello</h1>
+	<body class="l-container">
+		<div class="c-Header">
+			<!-- h1>This is your City Bucketlist</h1 -->
+			<h2>Where would you like to go?</h2>
+		</div>
+
+		<form class="c-AddCity">
+			<input type="text" name="add" id="add">
+			<button type="submit">Add</button>
+		</form>
+
+		<ol class="c-CityList">
+			<li class="c-City">
+				<h3>London</h3>
+				<i class="c-City__weather icon ion-md-sunny"></i>
+				<span class="c-City__temperature">34º</span>
+			</li>
+			<li class="c-City">
+				<h3>Lisbon</h3>
+				<i class="c-City__weather icon ion-md-cloud"></i>
+				<span class="c-City__temperature">11º</span>
+			</li>
+			<li class="c-City c-City--night">
+				<h3>Tokyo</h3>
+				<i class="c-City__weather icon ion-md-moon"></i>
+				<span class="c-City__temperature">16º</span>
+			</li>
+		</ol>
 
 		<div id="root"></div>
 		<script src="./src/App.js"></script>
