@@ -3,7 +3,7 @@ import axios from 'axios';
 import uuidv4 from 'uuid/v4';
 import City from '../components/City';
 import AddCity from '../components/AddCity';
-import endpoints from '../../.env.js';
+import env from '../../.env.js';
 
 class CityBucketlist extends Component {
 	// * Component Internal State
@@ -56,16 +56,33 @@ class CityBucketlist extends Component {
 		this.setState({
 			cities: newCities,
 		});
-		this.getWeather(name, id);
+		this.getWeatherAndTemperature(name, id);
 	}
 
-	getWeather = (name, id) => {
-		console.log('gonna get the weather!');
+	getWeatherAndTemperature = (name, id) => {
+		axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${env.weatherAPIKey}&units=metric`)
+		.then((response) => {
+			console.log('response', response.data);
+			let temperature = response.data.main.temp;
+			let weather = response.data.weather[0].main;
+			let newCities = this.state.cities.slice();
+
+			newCities.forEach((city) => {
+				if (city.id === id) {
+					city.temperature = temperature;
+					city.weather = weather;
+				}
+			});
+
+			this.setState({
+				cities: newCities,
+			});
+		});
 	}
 
 	// * onMount
 	componentDidMount() {
-		axios.get(endpoints.citiesIndex)
+		axios.get(env.citiesIndex)
 		.then((res) => {
 			this.setState({
 				// stuff will go there
