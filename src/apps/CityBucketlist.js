@@ -10,6 +10,7 @@ class CityBucketlist extends Component {
 	// * Component Internal State
 	state = {
 		cities: [
+			/*
 			{
 				id: uuidv4(),
 				name: 'London',
@@ -31,6 +32,7 @@ class CityBucketlist extends Component {
 				temperature: null,
 				night: true,
 			}
+			*/
 		]
 	};
 

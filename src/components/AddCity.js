@@ -31,6 +31,7 @@ class AddCity extends Component {
 					placeholder="Enter the name of a City"
 					value={ this.state.cityName }
 					onChange={ this.onChange }
+					autoFocus
 				/>
 			</form>
 		);
