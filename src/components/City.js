@@ -69,7 +69,7 @@ City.propTypes = {
 	weather: PropTypes.string,
 	temperature: PropTypes.number,
 	night: PropTypes.bool,
-	id: PropTypes.number.isRequired,
+	id: PropTypes.string.isRequired,
 }
 
 export default City;

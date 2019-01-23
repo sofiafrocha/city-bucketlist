@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import uuidv4 from 'uuid/v4';
 import City from '../components/City';
 import AddCity from '../components/AddCity';
+import endpoints from '../../.env.js';
 
 class CityBucketlist extends Component {
+	// * Component Internal State
 	state = {
 		cities: [
 			{
-				id: 1,
+				id: uuidv4(),
 				name: 'London',
 				weather: 'rainy',
 				temperature: 7,
 				night: false,
 			},
 			{
-				id: 2,
+				id: uuidv4(),
 				name: 'Lisbon',
 				weather: 'sunny',
 				temperature: 12,
 				night: false,
 			},
 			{
-				id: 3,
+				id: uuidv4(),
 				name: 'Tokyo',
 				weather: 'cloud',
 				temperature: 20,
@@ -39,8 +43,9 @@ class CityBucketlist extends Component {
 	}
 
 	addCity = (name) => {
+		const id = uuidv4();
 		const newCity = {
-			id: 5,
+			id,
 			weather: null,
 			temperature: null,
 			night: false,
@@ -51,8 +56,24 @@ class CityBucketlist extends Component {
 		this.setState({
 			cities: newCities,
 		});
+		this.getWeather(name, id);
 	}
 
+	getWeather = (name, id) => {
+		console.log('gonna get the weather!');
+	}
+
+	// * onMount
+	componentDidMount() {
+		axios.get(endpoints.citiesIndex)
+		.then((res) => {
+			this.setState({
+				// stuff will go there
+			})
+		});
+	}
+
+	// * Component Render Function
 	render() {
 		return (
 			<React.Fragment>

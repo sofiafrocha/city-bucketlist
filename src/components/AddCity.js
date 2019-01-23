@@ -21,6 +21,7 @@ class AddCity extends Component {
 		});
 	}
 
+	// * Component Render Function
 	render() {
 		return (
 			<form className="c-AddCity"
