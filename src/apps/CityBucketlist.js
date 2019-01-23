@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import City from '../components/City';
+import AddCity from '../components/AddCity';
 
 class CityBucketlist extends Component {
 	state = {
@@ -28,12 +29,27 @@ class CityBucketlist extends Component {
 		]
 	};
 
-	// Component Methods
+	// * Component Methods
 	removeCity = (id) => {
 		this.setState({
 			cities: this.state.cities.filter((city) => {
 				return city.id !== id;
 			}),
+		});
+	}
+
+	addCity = (name) => {
+		const newCity = {
+			id: 5,
+			weather: null,
+			temperature: null,
+			night: false,
+			name,
+		}
+		const newCities = this.state.cities.slice();
+		newCities.push(newCity);
+		this.setState({
+			cities: newCities,
 		});
 	}
 
@@ -44,9 +60,7 @@ class CityBucketlist extends Component {
 					Where would you like to go?
 				</h2>
 
-				<form className="c-AddCity">
-					<input type="text" name="add" id="add" placeholder="Enter the name of a City" />
-				</form>
+				<AddCity addCity={ this.addCity } />
 
 				<ol className="c-CityList">
 				{
