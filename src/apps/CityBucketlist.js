@@ -82,11 +82,8 @@ class CityBucketlist extends Component {
 
 	// * onMount
 	componentDidMount() {
-		axios.get(env.citiesIndex)
-		.then((res) => {
-			this.setState({
-				// stuff will go there
-			})
+		this.state.cities.forEach((city) => {
+			this.getWeatherAndTemperature(city.name, city.id);
 		});
 	}
 
