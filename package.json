@@ -1,0 +1,23 @@
+{
+  "name": "city-bucketlist",
+  "version": "1.0.0",
+  "description": "A list of the cities you want to go to!",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development parcel index.html",
+    "build": "NODE_ENV=production parcel build index.html --public-url /"
+  },
+  "author": "Sofia F. Rocha",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^9.4.6",
+    "babel-preset-react-app": "^7.0.0",
+    "parcel-bundler": "^1.11.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "sass": "^1.16.1"
+  }
+}
