@@ -38,10 +38,16 @@ class CityBucketlist extends Component {
 
 	// * Component Methods
 	removeCity = (id) => {
-		this.setState({
-			cities: this.state.cities.filter((city) => {
-				return city.id !== id;
-			}),
+		db.collection('cities').doc(id).delete().then(function() {
+			console.log("Document successfully deleted!");
+
+			this.setState({
+				cities: this.state.cities.filter((city) => {
+					return city.id !== id;
+				}),
+			});
+		}).catch(function(error) {
+			console.error("Error removing document: ", error);
 		});
 	}
 
@@ -54,7 +60,7 @@ class CityBucketlist extends Component {
 			name,
 		}
 		const newCities = this.state.cities.slice();
-		newCities.push(newCity);
+		newCities.unshift(newCity);
 		this.setState({
 			cities: newCities,
 		});
