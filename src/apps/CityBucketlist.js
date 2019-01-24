@@ -18,20 +18,6 @@ class CityBucketlist extends Component {
 				temperature: null,
 				night: false,
 			},
-			{
-				id: uuidv4(),
-				name: 'Lisbon',
-				weather: null,
-				temperature: null,
-				night: false,
-			},
-			{
-				id: uuidv4(),
-				name: 'Tokyo',
-				weather: null,
-				temperature: null,
-				night: true,
-			}
 			*/
 		]
 	};
