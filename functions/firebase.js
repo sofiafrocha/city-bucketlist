@@ -1,12 +1,48 @@
-console.log('firebase? hello?');
+import * as admin from 'firebase-admin';
+
+console.log('FIREBASE_PROJECT_ID', process.env.FIREBASE_PROJECT_ID);
+
+admin.initializeApp({
+	credential: admin.credential.cert({
+		projectId: process.env.FIREBASE_PROJECT_ID,
+		clientEmail: process.env.FIREBASE_EMAIL,
+		privateKey: process.env.FIREBASE_PRIVATE_KEY,
+	}),
+	databaseURL: process.env.DATABASE_URL
+});
+
+const result = [];
+const db = admin.firestore();
+const citiesCollection = db.collection('cities');
+// const query = citiesCollection.get();
+
+console.log('citiesCollection', citiesCollection);
+
+// const db = admin.database();
+// const ref = db.ref("cities");
 
 exports.handler = async (event, context) => {
-	const body = JSON.stringify({ msg: "buuuuuuuu!" });
-	console.log('body', body);
+	citiesCollection.get()
+	.then((results) => {
+		console.log('we have results!', results);
+
+		results.forEach((doc) => {
+			console.log('id', doc.id, doc.data());
+			result.push(doc.data());
+		});
+	})
+	.catch((error) => {
+		console.log('Erroryyyy!', error);
+	});
 
 	return {
 		statusCode: 200,
-		body,
+		body: JSON.stringify(
+			{
+				msg: "buuuuuuuu!",
+				cities: [],
+			}
+		)
 	};
 };
 
