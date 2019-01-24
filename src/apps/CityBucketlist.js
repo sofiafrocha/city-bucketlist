@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import uuidv4 from 'uuid/v4';
 import db from '../Firestore';
 import City from '../components/City';
 import AddCity from '../components/AddCity';
@@ -46,8 +45,7 @@ class CityBucketlist extends Component {
 		});
 	}
 
-	addCity = (name) => {
-		const id = uuidv4();
+	addCityToState = (name, id) => {
 		const newCity = {
 			id,
 			weather: null,
@@ -61,6 +59,22 @@ class CityBucketlist extends Component {
 			cities: newCities,
 		});
 		this.getWeatherAndTemperature(name, id);
+	}
+
+	addCityToServer = (name) => {
+		const callback = this.addCityToState;
+
+		db.collection('cities').add({
+			name,
+		})
+		.then(function(docRef) {
+			console.log("Document successfully written!", docRef.id);
+
+			callback(name, docRef.id);
+		})
+		.catch(function(error) {
+			console.error("Error writing document: ", error);
+		});
 	}
 
 	getWeatherAndTemperature = (name, id) => {
@@ -91,12 +105,14 @@ class CityBucketlist extends Component {
 			}
 		});
 
-		db.collection("cities").get().then((querySnapshot) => {
+		db.collection('cities').get().then((querySnapshot) => {
 			querySnapshot.forEach((doc) => {
-				console.log(doc.data());
-				console.log(doc.id);
+				const name = doc.data().name;
+				const id = doc.id;
 
-				this.addCity(doc.data().name);
+				console.log('here we go', doc.id);
+
+				this.addCityToState(name, id);
 			});
 		});
 	}
@@ -109,7 +125,7 @@ class CityBucketlist extends Component {
 					Where would you like to go?
 				</h2>
 
-				<AddCity addCity={ this.addCity } />
+				<AddCity addCity={ this.addCityToServer } />
 
 				<ol className="c-CityList">
 				{
