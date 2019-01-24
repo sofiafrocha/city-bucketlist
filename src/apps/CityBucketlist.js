@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
+import db from '../Firestore';
 import City from '../components/City';
 import AddCity from '../components/AddCity';
 
-const weatherAPIKey = process.env.OPEN_WEATHER_API_KEY;
+const weatherAPIKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
 class CityBucketlist extends Component {
 	// * Component Internal State
@@ -90,9 +91,14 @@ class CityBucketlist extends Component {
 			}
 		});
 
-		fetch('/.netlify/functions/firebase')
-      		.then(response => response.json())
-			.then(json => console.log('beep', json));
+		db.collection("cities").get().then((querySnapshot) => {
+			querySnapshot.forEach((doc) => {
+				console.log(doc.data());
+				console.log(doc.id);
+
+				this.addCity(doc.data().name);
+			});
+		});
 	}
 
 	// * Component Render Function
