@@ -89,6 +89,10 @@ class CityBucketlist extends Component {
 				this.getWeatherAndTemperature(city.name, city.id);
 			}
 		});
+
+		fetch('/api/firebase')
+      		.then(response => response.json())
+			.then(json => console.log('beep', json));
 	}
 
 	// * Component Render Function
