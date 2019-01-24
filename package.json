@@ -4,11 +4,13 @@
   "description": "A list of the cities you want to go to!",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development parcel index.html",
-    "build": "NODE_ENV=production parcel build index.html --public-url /",
+    "start": "run-p start:**",
+    "start:app": "react-scripts start",
+    "build:app": "react-scripts build",
     "postinstall": "npm run build",
-    "functions:start": "netlify-lambda serve functions -c webpack.server.js",
-    "functions:build": "netlify-lambda build functions"
+    "build": "run-p build:**",
+    "start:functions": "netlify-lambda serve functions -c webpack.server.js",
+    "build:functions": "netlify-lambda build functions"
   },
   "author": "Sofia F. Rocha",
   "license": "ISC",
@@ -16,11 +18,11 @@
     "autoprefixer": "^9.4.6",
     "axios": "^0.18.0",
     "babel-preset-react-app": "^7.0.0",
+    "dotenv": "^6.2.0",
     "firebase": "^5.8.0",
-    "http-proxy-middleware": "^0.19.1",
-    "parcel-bundler": "^1.11.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-scripts": "^2.1.3",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -28,7 +30,16 @@
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "http-proxy-middleware": "^0.19.1",
+    "netlify-lambda": "^1.3.0",
+    "npm-run-all": "^4.1.5",
     "sass": "^1.16.1",
     "weather-icons": "^1.3.2"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

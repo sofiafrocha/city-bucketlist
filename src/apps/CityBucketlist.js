@@ -90,7 +90,7 @@ class CityBucketlist extends Component {
 			}
 		});
 
-		fetch('/api/firebase')
+		fetch('/.netlify/functions/firebase')
       		.then(response => response.json())
 			.then(json => console.log('beep', json));
 	}
